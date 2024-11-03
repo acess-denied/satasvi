@@ -87,12 +87,16 @@ class Paper {
 
   // Function to play music
   playMusic() {
-    // Ensure audio file path is correct
-    const audio = new Audio('images/audio.mp3');
-    audio.play().catch((error) => {
-      console.warn("Audio playback failed:", error);
-    });
-  }
+  const audio = new Audio('images/audio.mp3');
+  audio.volume = 1.0; // Ensure volume is set to max
+
+  // Attempt to play the audio directly
+  audio.play().then(() => {
+    console.log("Audio playback started successfully.");
+  }).catch((error) => {
+    console.warn("Audio playback failed:", error);
+    // Optionally, prompt the user to interact manually to enable sound
+  });
 }
 
 // Select all elements with the class 'paper' and initialize Paper instances
