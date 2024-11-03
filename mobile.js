@@ -88,7 +88,7 @@ class Paper {
   // Function to play music
   playMusic() {
     // Ensure audio file path is correct
-    const audio = new Audio('audio/music.mp3');
+    const audio = new Audio('images/music.mp3');
     audio.play().catch((error) => {
       console.warn("Audio playback failed:", error);
     });
