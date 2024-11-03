@@ -1,4 +1,3 @@
-// mobile.js
 let highestZ = 1; // Keeps track of the z-index for stacking papers
 
 class Paper {
