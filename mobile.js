@@ -1,3 +1,4 @@
+// mobile.js
 let highestZ = 1; // Keeps track of the z-index for stacking papers
 
 class Paper {
@@ -6,8 +7,6 @@ class Paper {
   touchStartY = 0;
   touchMoveX = 0;
   touchMoveY = 0;
-  touchEndX = 0;
-  touchEndY = 0;
   prevTouchX = 0;
   prevTouchY = 0;
   velX = 0;
@@ -87,23 +86,25 @@ class Paper {
 
   // Function to play music
   playMusic() {
-  const audio = new Audio('images/audio.mp3');
-  audio.volume = 1.0; // Ensure volume is set to max
+    const audio = new Audio('images/audio.mp3');
+    audio.volume = 1.0; // Ensure volume is set to max
 
-  // Attempt to play the audio directly
-  audio.play().then(() => {
-    console.log("Audio playback started successfully.");
-  }).catch((error) => {
-    console.warn("Audio playback failed:", error);
-    // Optionally, prompt the user to interact manually to enable sound
-  });
+    // Attempt to play the audio directly
+    audio.play().then(() => {
+      console.log("Audio playback started successfully.");
+    }).catch((error) => {
+      console.warn("Audio playback failed:", error);
+      // Optionally, prompt the user to interact manually to enable sound
+    });
+  }
 }
 
 // Select all elements with the class 'paper' and initialize Paper instances
-const papers = Array.from(document.querySelectorAll('.paper'));
+document.addEventListener("DOMContentLoaded", () => {
+  const papers = Array.from(document.querySelectorAll('.paper'));
 
-papers.forEach(paper => {
-  const p = new Paper();
-  p.init(paper);
+  papers.forEach(paper => {
+    const p = new Paper();
+    p.init(paper);
+  });
 });
-
