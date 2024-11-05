@@ -85,21 +85,7 @@ class Paper {
     });
   }
 
-  // Function to play music
-  playMusic() {
-    if (Paper.playedOnce) return; // Prevent playing again after the first time
-
-    Paper.audio.volume = 1.0; // Ensure volume is set to max
-
-    // Attempt to play the audio directly
-    Paper.audio.play().then(() => {
-      Paper.playedOnce = true; // Set flag after successful playback
-      console.log("Audio playback started successfully.");
-    }).catch((error) => {
-      console.warn("Audio playback failed:", error);
-    });
-  }
-}
+ 
 
 // Select all elements with the class 'paper' and initialize Paper instances
 document.addEventListener("DOMContentLoaded", () => {
