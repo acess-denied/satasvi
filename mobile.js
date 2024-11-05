@@ -14,6 +14,7 @@ class Paper {
   currentPaperX = 0;
   currentPaperY = 0;
   rotating = false;
+  isPlaying = false; // Flag to track audio playback state
   
   // Initialize the paper element
   init(paper) {
@@ -85,10 +86,25 @@ class Paper {
 
   // Function to play music
   playMusic() {
+    if (this.isPlaying) return; // Prevent overlapping playback
+    this.isPlaying = true;
+
     const audio = new Audio('images/audio.mp3');
     audio.volume = 1.0; // Ensure volume is set to max
 
- 
+    // Attempt to play the audio directly
+    audio.play().then(() => {
+      console.log("Audio playback started successfully.");
+    }).catch((error) => {
+      console.warn("Audio playback failed:", error);
+    });
+
+    // Reset the flag when the audio finishes playing
+    audio.onended = () => {
+      this.isPlaying = false;
+    };
+  }
+}
 
 // Select all elements with the class 'paper' and initialize Paper instances
 document.addEventListener("DOMContentLoaded", () => {
