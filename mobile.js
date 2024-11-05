@@ -15,8 +15,8 @@ class Paper {
   currentPaperY = 0;
   rotating = false;
   static audio = new Audio('images/audio.mp3'); // Create audio instance once
-  static isPlaying = false; // Shared flag for audio playback state
-  
+  static playedOnce = false; // Flag to check if audio has played
+
   // Initialize the paper element
   init(paper) {
     paper.addEventListener('touchmove', (e) => {
@@ -87,22 +87,17 @@ class Paper {
 
   // Function to play music
   playMusic() {
-    if (Paper.isPlaying) return; // Prevent overlapping playback
+    if (Paper.playedOnce) return; // Prevent playing again after the first time
 
     Paper.audio.volume = 1.0; // Ensure volume is set to max
 
     // Attempt to play the audio directly
     Paper.audio.play().then(() => {
-      Paper.isPlaying = true;
+      Paper.playedOnce = true; // Set flag after successful playback
       console.log("Audio playback started successfully.");
     }).catch((error) => {
       console.warn("Audio playback failed:", error);
     });
-
-    // Reset the flag when the audio finishes playing
-    Paper.audio.onended = () => {
-      Paper.isPlaying = false;
-    };
   }
 }
 
